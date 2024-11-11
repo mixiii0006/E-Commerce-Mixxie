@@ -5,10 +5,12 @@ export default {
     content: [
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './storage/framework/views/*.php',
+        'node_modules/preline/dist/*.js',
         './resources/**/*.blade.php',
         './resources/**/*.js',
         './resources/**/*.vue',
     ],
+    darkmode: 'class',
     theme: {
         extend: {
             fontFamily: {
@@ -16,5 +18,7 @@ export default {
             },
         },
     },
-    plugins: [],
+    plugins: [
+        require('preline/plugin'),
+    ],
 };
