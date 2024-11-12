@@ -15,7 +15,7 @@
                     <path d="m9 18 6-6-6-6" />
                   </svg>
                 </a>
-                <a class="py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/contact">
+                <a class="py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="https://www.linkedin.com/in/natasya-salsabilla-048343295/">
                   Contact sales team
                 </a>
               </div>
@@ -262,21 +262,20 @@
               <div class="flex flex-wrap items-center justify-between pb-4 mb-6 space-x-2 border-b dark:border-gray-700">
                 <div class="flex items-center px-6 mb-2 md:mb-0 ">
                   <div class="flex mr-2 rounded-full">
-                    <img src="https://i.postimg.cc/rF6G0Dh9/pexels-emmy-e-2381069.jpg" alt="" class="object-cover w-12 h-12 rounded-full">
+                    <img src="/image/pfp.jpg" alt="" class="object-cover w-12 h-12 rounded-full">
                   </div>
                   <div>
                     <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-300">
-                      Adren Roy</h2>
-                    <p class="text-xs text-gray-500 dark:text-gray-400">Web Designer</p>
+                      Zealni</h2>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">Customer</p>
                   </div>
                 </div>
                 <p class="px-6 text-base font-medium text-gray-600 dark:text-gray-400"> Joined 12, SEP , 2022
                 </p>
               </div>
               <p class="px-6 mb-6 text-base text-gray-500 dark:text-gray-400">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem cupiditate similique,
-                iure minus sed fugit obcaecati minima quam reiciendis dicta!
-              </p>
+                Mixxstore is an e-commerce platform specializing in gothic fashion, appealing to fans of alternative styles such as goth, punk, and steampunk. Like many gothic stores, it emphasizes dark, edgy designs that blend modern and Victorian aesthetics. Gothic e-commerce shops typically feature a range of items from clothing and shoes to accessories and decor, allowing fans to fully embody this style. 
+                </p>
               <div class="flex flex-wrap justify-between pt-4 border-t dark:border-gray-700">
                 <div class="flex px-6 mb-2 md:mb-0">
                   <ul class="flex items-center justify-start mr-4">
@@ -343,20 +342,19 @@
               <div class="flex flex-wrap items-center justify-between pb-4 mb-6 space-x-2 border-b dark:border-gray-700">
                 <div class="flex items-center px-6 mb-2 md:mb-0 ">
                   <div class="flex mr-2 rounded-full">
-                    <img src="https://i.postimg.cc/q7pv50zT/pexels-edmond-dant-s-4342352.jpg" alt="" class="object-cover w-12 h-12 rounded-full">
+                    <img src="/image/pfp1.jpg" alt="" class="object-cover w-12 h-12 rounded-full">
                   </div>
                   <div>
                     <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-300">
-                      Sonira Roy</h2>
-                    <p class="text-xs text-gray-500 dark:text-gray-400">Manager</p>
+                      Gojo Satoru</h2>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">Customer</p>
                   </div>
                 </div>
                 <p class="px-6 text-base font-medium text-gray-600 dark:text-gray-400"> Joined 12, SEP , 2022
                 </p>
               </div>
               <p class="px-6 mb-6 text-base text-gray-500 dark:text-gray-400">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem cupiditate similique,
-                iure minus sed fugit obcaecati minima quam reiciendis dicta!
+                MixxStore is the perfect place to find goth accessories and clothing that are hard to come by in other stores. I bought a necklace with a really unique design. The only downside was the slightly longer shipping time, but the quality of the items made it worth the wait!
               </p>
               <div class="flex flex-wrap justify-between pt-4 border-t dark:border-gray-700">
                 <div class="flex px-6 mb-2 md:mb-0">
@@ -422,20 +420,19 @@
               <div class="flex flex-wrap items-center justify-between pb-4 mb-6 space-x-2 border-b dark:border-gray-700">
                 <div class="flex items-center px-6 mb-2 md:mb-0 ">
                   <div class="flex mr-2 rounded-full">
-                    <img src="https://i.postimg.cc/JzmrHQmk/pexels-pixabay-220453.jpg" alt="" class="object-cover w-12 h-12 rounded-full">
+                    <img src="/image/pfp2.jpg" alt="" class="object-cover w-12 h-12 rounded-full">
                   </div>
                   <div>
                     <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-300">
-                      William harry</h2>
-                    <p class="text-xs text-gray-500 dark:text-gray-400">Marketing Officer</p>
+                      Toji Fushiguro</h2>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">Customer</p>
                   </div>
                 </div>
                 <p class="px-6 text-base font-medium text-gray-600 dark:text-gray-400"> Joined 12, SEP , 2022
                 </p>
               </div>
               <p class="px-6 mb-6 text-base text-gray-500 dark:text-gray-400">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem cupiditate similique,
-                iure minus sed fugit obcaecati minima quam reiciendis dicta!
+                MixxStore offers a wide variety of goth clothing and accessories that are absolutely stunning! I bought a black jacket that fits perfectly and looks incredibly stylish. They also have accessories that really add to the gothic vibe I'm looking for. Customer service was friendly and helpful as well.
               </p>
               <div class="flex flex-wrap justify-between pt-4 border-t dark:border-gray-700">
                 <div class="flex px-6 mb-2 md:mb-0">
@@ -501,20 +498,19 @@
               <div class="flex flex-wrap items-center justify-between pb-4 mb-6 space-x-2 border-b dark:border-gray-700">
                 <div class="flex items-center px-6 mb-2 md:mb-0 ">
                   <div class="flex mr-2 rounded-full">
-                    <img src="https://i.postimg.cc/4NMZPYdh/pexels-dinielle-de-veyra-4195342.jpg" alt="" class="object-cover w-12 h-12 rounded-full">
+                    <img src="/image/pfp3.jpg" alt="" class="object-cover w-12 h-12 rounded-full">
                   </div>
                   <div>
                     <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-300">
-                      James jack</h2>
-                    <p class="text-xs text-gray-500 dark:text-gray-400">Java Programmer</p>
+                      Jude Bellingham</h2>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">Customer</p>
                   </div>
                 </div>
                 <p class="px-6 text-base font-medium text-gray-600 dark:text-gray-400"> Joined 12, SEP , 2022
                 </p>
               </div>
               <p class="px-6 mb-6 text-base text-gray-500 dark:text-gray-400">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem cupiditate similique,
-                iure minus sed fugit obcaecati minima quam reiciendis dicta!
+                If you're a fan of goth or unique fashion, MixxStore is the place to shop! They have a diverse collection, from clothing to accessories, with creative and one-of-a-kind designs. I'm always happy with my purchases, and the prices are very reasonable. MixxStore is now my favorite store!
               </p>
               <div class="flex flex-wrap justify-between pt-4 border-t dark:border-gray-700">
                 <div class="flex px-6 mb-2 md:mb-0">

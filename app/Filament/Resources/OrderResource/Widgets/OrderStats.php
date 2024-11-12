@@ -33,7 +33,7 @@ class OrderStats extends BaseWidget
                 ->descriptionIcon('heroicon-o-arrow-trending-up')
                 ->color('primary')
                 ->chart([4, 3,  7,  24, 8, 9, 16, 9, 12]),
-            Stat::make('Average Price', Number::currency(Order::query()->avg('grand_total'), 'USD'))
+            Stat::make('Total Revenue', Number::currency(Order::query()->sum('grand_total'), 'USD'))
                 ->color('success')
                 ->icon('heroicon-o-currency-dollar')
                 ->description('Grand Total')

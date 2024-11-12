@@ -52,7 +52,7 @@ class AddressRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('street_address')
             ->columns([
-                Tables\Columns\TextColumn::make('fullname')
+                Tables\Columns\TextColumn::make('full_name')
                     ->label('Full Name'),
                 Tables\Columns\TextColumn::make('phone'),
                 Tables\Columns\TextColumn::make('city'),
