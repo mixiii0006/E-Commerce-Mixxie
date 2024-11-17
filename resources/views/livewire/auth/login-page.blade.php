@@ -59,7 +59,7 @@
                     @enderror
                   </div>
                   @error('password')
-                  <p class="hidden text-xs text-red-600 mt-2" id="password-error">{{message}}</p>
+                  <p class="hidden text-xs text-red-600 mt-2" id="password-error">{{$message}}</p>
                   @enderror
                 </div>
                 <!-- End Form Group -->

@@ -28,6 +28,9 @@ use Filament\Tables\Columns\SelectColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Filament\Tables\Actions\Action;
+
 
 use PhpParser\Node\Stmt\Label;
 use SebastianBergmann\CodeCoverage\Report\Html\Colors;
@@ -212,6 +215,17 @@ class OrderResource extends Resource
                 Tables\Actions\ActionGroup::make([
                     Tables\Actions\ViewAction::make(),
                     Tables\Actions\EditAction::make(),
+                    Action::make('Download Invoice')
+                    ->action(function (Order $record) {
+                        $pdf = Pdf::loadView('invoices.order', ['order' => $record]);
+
+                        return response()->streamDownload(
+                            fn () => print($pdf->output()),
+                            "invoice_order_{$record->id}.pdf"
+                        );
+                    })
+                    ->icon('heroicon-o-document')
+                    ->color('gray'),
                     Tables\Actions\DeleteAction::make(),
                 ])
             ])

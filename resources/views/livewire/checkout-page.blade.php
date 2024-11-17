@@ -6,6 +6,7 @@
         <div class="grid grid-cols-12 gap-4">
             <div class="md:col-span-12 lg:col-span-8 col-span-12">
                 <!-- Card -->
+                <!-- Card -->
                 <div class="bg-white rounded-xl shadow p-4 sm:p-7 dark:bg-slate-900">
                     <!-- Shipping Address -->
                     <div class="mb-6">

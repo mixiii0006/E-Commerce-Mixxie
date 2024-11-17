@@ -81,7 +81,7 @@
                 @foreach ($products as $product)
                 <div class="w-full px-3 mb-6 sm:w-1/2 md:w-1/3" wire:key="{{$product->id}}">
                     <div class="border border-gray-300 dark:border-gray-700">
-                      <div class="relative bg-gray-600">
+                      <div class="relative bg-white">
                         <a href="/products/{{$product->slug}}" class="">
                           <img src="{{url('storage', $product->images[1])}}" alt="{{$product->name}}" class="object-cover w-full h-56 mx-auto ">
                         </a>
