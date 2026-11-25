@@ -48,7 +48,7 @@ class ProductPage extends Component
 
     public function render()
     {
-        $productQuery = Product::query()->where('is_active', 1);
+        $productQuery = Product::query()->with('brand')->where('is_active', 1);
 
         if(!empty($this->selected_categories)){
             $productQuery->whereIn('category_id', $this->selected_categories);

@@ -44,8 +44,19 @@ class ProductDetailPage extends Component
     public function render()
     {
 
+        $product = Product::with(['brand', 'category'])->where('slug', $this->slug)->firstOrFail();
+
+        $related = Product::with('brand')
+            ->where('is_active', 1)
+            ->where('category_id', $product->category_id)
+            ->whereKeyNot($product->id)
+            ->latest()
+            ->take(4)
+            ->get();
+
         return view('livewire.product-detail-page',[
-            'product' => Product::where('slug', $this->slug)->firstOrFail()
+            'product' => $product,
+            'related' => $related,
         ]);
     }
 }

@@ -1,66 +1,51 @@
-<div class="w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto">
-    <h1 class="text-4xl font-bold text-gray-200">My Orders</h1>
-    <div class="flex flex-col bg-white dark:bg-slate-900 p-5 rounded mt-4 shadow-lg">
-      <div class="-m-1.5 overflow-x-auto">
-        <div class="p-1.5 min-w-full inline-block align-middle">
-          <div class="overflow-hidden">
-            <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-              <thead>
-                <tr>
-                  <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Order</th>
-                  <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Date</th>
-                  <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Order Status</th>
-                  <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Payment Status</th>
-                  <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Order Amount</th>
-                  <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                @foreach ($orders as $order )
-                @php
-                    $status= '';
-                    $payment_status= '';
-                    if($order->status == 'new'){
-                        $status ='<span class="bg-blue-500 py-1 px-3 rounded text-white shadow">New</span>';
-                    }
-                    if($order->status == 'processing'){
-                        $status ='<span class="bg-yellow-500 py-1 px-3 rounded text-white shadow">Processing</span>';
-                    }
-                    if($order->status == 'shipped'){
-                        $status ='<span class="bg-green-500 py-1 px-3 rounded text-white shadow">Shipped</span>';
-                    }
-                    if($order->status == 'delivered'){
-                        $status ='<span class="bg-green-700 py-1 px-3 rounded text-white shadow">Delivered</span>';
-                    }
-                    if($order->status == 'cancelled'){
-                        $status ='<span class="bg-red-500 py-1 px-3 rounded text-white shadow">Cancelled</span>';
-                    }
-                    if($order->payment_status == 'pending'){
-                        $payment_status ='<span class="bg-blue-500 py-1 px-3 rounded text-white shadow">Pending</span>';
-                    }
-                    if($order->payment_status == 'paid'){
-                        $payment_status ='<span class="bg-green-500 py-1 px-3 rounded text-white shadow">Paid</span>';
-                    }
-                    if($order->payment_status == 'failed'){
-                        $payment_status ='<span class="bg-red-500 py-1 px-3 rounded text-white shadow">Failed</span>';
-                    }
-                @endphp
-                <tr wire:key="{{$order->id}}" class="odd:bg-white even:bg-gray-100 dark:odd:bg-slate-900 dark:even:bg-slate-800">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">{{$order->id}}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">{{$order->created_at->format('d-m-Y')}}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">{!! $status !!}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">{!! $payment_status !!}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">{{Number::currency($order->grand_total, 'USD')}}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                      <a href="/my-orders/{{$order->id}}" class="bg-slate-600 text-white py-2 px-4 rounded-md hover:bg-slate-500">View Details</a>
-                    </td>
-                  </tr>
-                @endforeach
-              </tbody>
-            </table>
-          </div>
+<div class="container-x py-12 md:py-16">
+    <div class="flex flex-col gap-4 border-b border-white/[0.06] pb-8 md:flex-row md:items-end md:justify-between">
+        <div>
+            <p class="eyebrow">Account</p>
+            <h1 class="heading-xl mt-3 text-6xl md:text-7xl">My orders</h1>
         </div>
-        {{$orders->links()}}
-      </div>
+        <p class="text-sm text-bone-500"><span class="font-display text-2xl text-ember-400">{{ $orders->total() }}</span> orders placed</p>
     </div>
-  </div>
+
+    @if ($orders->count())
+        <div class="panel mt-10 overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-sm">
+                    <thead>
+                        <tr class="border-b border-white/[0.06] text-left text-[11px] uppercase tracking-widest2 text-bone-500">
+                            <th class="px-6 py-4 font-semibold">Order</th>
+                            <th class="px-6 py-4 font-semibold">Date</th>
+                            <th class="px-6 py-4 font-semibold">Status</th>
+                            <th class="px-6 py-4 font-semibold">Payment</th>
+                            <th class="px-6 py-4 text-right font-semibold">Amount</th>
+                            <th class="px-6 py-4"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-white/[0.06]">
+                        @foreach ($orders as $order)
+                            <tr wire:key="{{ $order->id }}" class="transition hover:bg-white/[0.02]">
+                                <td class="whitespace-nowrap px-6 py-5 font-display text-lg text-bone">#{{ str_pad($order->id, 4, '0', STR_PAD_LEFT) }}</td>
+                                <td class="whitespace-nowrap px-6 py-5 text-bone-400">{{ $order->created_at->format('d M Y') }}</td>
+                                <td class="whitespace-nowrap px-6 py-5"><x-status-pill :value="$order->status" /></td>
+                                <td class="whitespace-nowrap px-6 py-5"><x-status-pill :value="$order->payment_status" /></td>
+                                <td class="whitespace-nowrap px-6 py-5 text-right font-semibold text-bone">{{ Number::currency($order->grand_total, 'USD') }}</td>
+                                <td class="whitespace-nowrap px-6 py-5 text-right">
+                                    <a wire:navigate href="/my-orders/{{ $order->id }}" class="link-arrow">Details <span aria-hidden="true">&rarr;</span></a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="mt-10">
+            {{ $orders->links('livewire.partials.pagination') }}
+        </div>
+    @else
+        <div class="mt-10 flex flex-col items-center rounded-3xl border border-dashed border-white/10 px-6 py-24 text-center">
+            <p class="font-gothic text-7xl text-ember-400">No orders yet</p>
+            <p class="mt-4 text-sm text-bone-500">When you place an order it will appear here.</p>
+            <a wire:navigate href="/products" class="btn-primary mt-8">Start shopping</a>
+        </div>
+    @endif
+</div>

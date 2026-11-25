@@ -1,124 +1,111 @@
-<div class="w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto">
-    <section class="py-10 bg-gray-50 font-poppins dark:bg-gray-800 rounded-lg">
-      <div class="px-4 py-4 mx-auto max-w-7xl lg:py-6 md:px-6">
-        <div class="flex flex-wrap mb-24 -mx-3">
-          <div class="w-full pr-2 lg:w-1/4 lg:block">
-            <div class="p-4 mb-5 bg-white border border-gray-200 dark:border-gray-900 dark:bg-gray-900">
-              <h2 class="text-2xl font-bold dark:text-gray-400"> Categories</h2>
-              <div class="w-16 pb-2 mb-6 border-b border-rose-600 dark:border-gray-400"></div>
-              <ul>
-                @foreach ($categories as $category)
-                <li class="mb-4" wire:key="{{$category->id}}">
-                    <label for="{{$category->slug}}" class="flex items-center dark:text-gray-300">
-                      <input type="checkbox" wire:model.live="selected_categories" id="{{$category->slug}}" value="{{$category->id}}" class="w-4 h-4 mr-2">
-                      <span class="text-lg dark:text-gray-400">{{$category->name}}</span>
-                    </label>
-                  </li>
-                @endforeach
-              </ul>
-
+<div>
+    {{-- Page header --}}
+    <section class="relative overflow-hidden border-b border-white/[0.06]">
+        <p class="pointer-events-none absolute -bottom-10 right-0 select-none font-gothic text-[14rem] leading-none text-white/[0.03] md:text-[20rem]" aria-hidden="true">Collection</p>
+        <div class="container-x relative py-14 md:py-20">
+            <nav class="eyebrow flex items-center gap-2"><a wire:navigate href="/" class="hover:text-ember-300">Home</a><span>/</span><span class="text-bone">Shop</span></nav>
+            <div class="mt-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                <h1 class="heading-xl text-6xl md:text-8xl">The collection</h1>
+                <p class="text-sm text-bone-500"><span class="font-display text-2xl text-ember-400">{{ $products->total() }}</span> pieces found</p>
             </div>
-            <div class="p-4 mb-5 bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-900">
-              <h2 class="text-2xl font-bold dark:text-gray-400">Brand</h2>
-              <div class="w-16 pb-2 mb-6 border-b border-rose-600 dark:border-gray-400"></div>
-              <ul>
-                @foreach ($brands as $brand)
-                <li class="mb-4" wire:key="{{$brand->id}}">
-                    <label for="{{$brand->slug}}" class="flex items-center dark:text-gray-300">
-                      <input type="checkbox" wire:model.live="selected_brands"  id="{{$brand->slug}}" value="{{$brand->id}}" class="w-4 h-4 mr-2">
-                      <span class="text-lg dark:text-gray-400">{{$brand->name}}</span>
-                    </label>
-                  </li>
-                @endforeach
-
-              </ul>
-            </div>
-            <div class="p-4 mb-5 bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-900">
-              <h2 class="text-2xl font-bold dark:text-gray-400">Product Status</h2>
-              <div class="w-16 pb-2 mb-6 border-b border-rose-600 dark:border-gray-400"></div>
-              <ul>
-                <li class="mb-4">
-                  <label for="featured" class="flex items-center dark:text-gray-300">
-                    <input type="checkbox" id="featured" wire:model.live="featured" value="1" class="w-4 h-4 mr-2">
-                    <span class="text-lg dark:text-gray-400">Featured Products</span>
-                  </label>
-                </li>
-                <li class="mb-4">
-                  <label for="on_sale" class="flex items-center dark:text-gray-300">
-                    <input type="checkbox" id="on_sale" wire:model.live="on_sale" value="1"  class="w-4 h-4 mr-2">
-                    <span class="text-lg dark:text-gray-400">On Sale</span>
-                  </label>
-                </li>
-              </ul>
-            </div>
-
-            <div class="p-4 mb-5 bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-900">
-              <h2 class="text-2xl font-bold dark:text-gray-400">Price</h2>
-              <div class="w-16 pb-2 mb-6 border-b border-rose-600 dark:border-gray-400"></div>
-              <div>
-                <div class="text-blue-400 font-semibold">{{Number::currency($price_range)}}</div>
-                <input type="range" wire:model.live="price_range" class="w-full h-1 mb-4 bg-blue-100 rounded appearance-none cursor-pointer" max="1000" value="500" step="10">
-                <div class="flex justify-between ">
-                  <span class="inline-block text-lg font-bold text-blue-400 ">{{Number::currency(10)}}</span>
-                  <span class="inline-block text-lg font-bold text-blue-400 ">{{Number::currency(1000)}}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="w-full px-3 lg:w-3/4">
-            <div class="px-3 mb-4">
-              <div class="items-center justify-between hidden px-3 py-2 bg-gray-100 md:flex dark:bg-gray-900 ">
-                <div class="flex items-center justify-between">
-                  <select wire:model.live="sort" class="block w-40 text-base bg-gray-100 cursor-pointer dark:text-gray-400 dark:bg-gray-900">
-                    <option value="latest">Sort by latest</option>
-                    <option value="price">Sort by Price</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="flex flex-wrap items-center ">
-
-                @foreach ($products as $product)
-                <div class="w-full px-3 mb-6 sm:w-1/2 md:w-1/3" wire:key="{{$product->id}}">
-                    <div class="border border-gray-300 dark:border-gray-700">
-                      <div class="relative bg-white">
-                        <a href="/products/{{$product->slug}}" class="">
-                          <img src="{{url('storage', $product->images[1])}}" alt="{{$product->name}}" class="object-cover w-full h-56 mx-auto ">
-                        </a>
-                      </div>
-                      <div class="p-3 ">
-                        <div class="flex items-center justify-between gap-2 mb-2">
-                          <h3 class="text-xl font-medium dark:text-gray-400">
-                           {{$product->name}}
-                          </h3>
-                        </div>
-                        <p class="text-lg ">
-                          <span class="text-green-600 dark:text-green-600">{{Number::currency($product->price)}}</span>
-                        </p>
-                      </div>
-                      <div class="flex justify-center p-4 border-t border-gray-300 dark:border-gray-700">
-
-                        <a wire:click.prevent="addToCart({{$product->id}})" href="#" class="text-gray-500 flex items-center space-x-2 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-300">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="w-4 h-4 bi bi-cart3 " viewBox="0 0 16 16">
-                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
-                          </svg><span wire:loading.remove wire:target="addToCart({{$product->id}})">Add to Cart </span><span wire:loading wire:target="addToCart({{$product->id}})">Adding...</span>
-                        </a>
-
-                      </div>
-                    </div>
-                  </div>
-
-                @endforeach
-
-            </div>
-            <!-- pagination start -->
-            <div class="flex justify-end mt-6">
-              {{ $products->links() }}
-            </div>
-            <!-- pagination end -->
-          </div>
         </div>
-      </div>
     </section>
 
-  </div>
+    <section class="container-x py-12">
+        <div class="grid gap-10 lg:grid-cols-[280px_1fr]">
+            {{-- Filters --}}
+            <aside class="space-y-4 lg:sticky lg:top-24 lg:self-start">
+                <div class="panel p-6">
+                    <h2 class="eyebrow text-bone">Categories</h2>
+                    <ul class="mt-5 space-y-3">
+                        @foreach ($categories as $category)
+                            <li wire:key="c-{{ $category->id }}">
+                                <label for="{{ $category->slug }}" class="group flex cursor-pointer items-center gap-3 text-sm text-bone-300 hover:text-white">
+                                    <input type="checkbox" wire:model.live="selected_categories" id="{{ $category->slug }}" value="{{ $category->id }}" class="check">
+                                    {{ $category->name }}
+                                </label>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+
+                <div class="panel p-6">
+                    <h2 class="eyebrow text-bone">Brand</h2>
+                    <ul class="mt-5 space-y-3">
+                        @foreach ($brands as $brand)
+                            <li wire:key="b-{{ $brand->id }}">
+                                <label for="{{ $brand->slug }}" class="flex cursor-pointer items-center gap-3 text-sm text-bone-300 hover:text-white">
+                                    <input type="checkbox" wire:model.live="selected_brands" id="{{ $brand->slug }}" value="{{ $brand->id }}" class="check">
+                                    {{ $brand->name }}
+                                </label>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+
+                <div class="panel p-6">
+                    <h2 class="eyebrow text-bone">Status</h2>
+                    <ul class="mt-5 space-y-3">
+                        <li>
+                            <label for="featured" class="flex cursor-pointer items-center gap-3 text-sm text-bone-300 hover:text-white">
+                                <input type="checkbox" id="featured" wire:model.live="featured" value="1" class="check">
+                                Featured
+                            </label>
+                        </li>
+                        <li>
+                            <label for="on_sale" class="flex cursor-pointer items-center gap-3 text-sm text-bone-300 hover:text-white">
+                                <input type="checkbox" id="on_sale" wire:model.live="on_sale" value="1" class="check">
+                                On sale
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="panel p-6">
+                    <div class="flex items-center justify-between">
+                        <h2 class="eyebrow text-bone">Max price</h2>
+                        <span class="font-display text-lg text-ember-400">{{ Number::currency($price_range) }}</span>
+                    </div>
+                    <input type="range" wire:model.live="price_range" class="mt-5 h-1 w-full cursor-pointer appearance-none rounded-full bg-white/10 accent-ember" max="1000" value="500" step="10">
+                    <div class="mt-3 flex justify-between text-xs text-bone-500">
+                        <span>{{ Number::currency(10) }}</span>
+                        <span>{{ Number::currency(1000) }}</span>
+                    </div>
+                </div>
+            </aside>
+
+            {{-- Grid --}}
+            <div>
+                <div class="mb-8 flex items-center justify-between gap-4 border-b border-white/[0.06] pb-5">
+                    <p class="hidden text-xs uppercase tracking-widest2 text-bone-500 sm:block">
+                        <span wire:loading.remove>Page {{ $products->currentPage() }} of {{ max($products->lastPage(), 1) }}</span>
+                        <span wire:loading class="text-ember-300">Summoning&hellip;</span>
+                    </p>
+                    <label class="flex items-center gap-3 text-xs uppercase tracking-widest2 text-bone-500">
+                        Sort
+                        <select wire:model.live="sort" class="cursor-pointer rounded-full border border-white/10 bg-ink-900 py-2 pe-9 ps-4 text-xs font-semibold uppercase tracking-wider text-bone focus:border-ember focus:ring-ember/30">
+                            <option value="latest">Latest</option>
+                            <option value="price">Price: low to high</option>
+                        </select>
+                    </label>
+                </div>
+
+                <div class="grid grid-cols-2 gap-x-5 gap-y-10 transition-opacity xl:grid-cols-3" wire:loading.class="opacity-50">
+                    @forelse ($products as $i => $product)
+                        <x-product-card :product="$product" wire:key="p-{{ $product->id }}" class="animate-rise" style="animation-delay: {{ $i * 50 }}ms" />
+                    @empty
+                        <div class="col-span-full flex flex-col items-center rounded-3xl border border-dashed border-white/10 px-6 py-24 text-center">
+                            <p class="font-gothic text-6xl text-ember-400">Nothing here</p>
+                            <p class="mt-4 text-sm text-bone-500">No pieces match these filters. Try loosening them.</p>
+                            <a wire:navigate href="/products" class="btn-ghost mt-8">Reset filters</a>
+                        </div>
+                    @endforelse
+                </div>
+
+                <div class="mt-14">
+                    {{ $products->links('livewire.partials.pagination') }}
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,68 +1,94 @@
-<div class="w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto">
-    <section class="overflow-hidden bg-white py-11 font-poppins dark:bg-gray-800">
-      <div class="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">
-        <div class="flex flex-wrap -mx-4">
-          <div class="w-full mb-8 md:w-1/2 md:mb-0" x-data="{ mainImage: '{{url('storage', $product->images[0])}}' }">
-            <div class=" top-0 z-50 overflow-hidden ">
-              <div class="relative mb-6 lg:mb-10 lg:h-2/4 ">
-                <img x-bind:src="mainImage" alt="" class="object-cover w-full lg:h-full ">
-              </div>
-              <div class="flex-wrap hidden md:flex ">
-                @foreach ($product->images as $image)
-                <div class="w-1/2 p-2 sm:w-1/4" x-on:click="mainImage='{{url('storage', $image)}}'">
-                    <img src="{{url('storage', $image)}}" alt="{{$product->name}}" class="object-cover w-full lg:h-20 cursor-pointer hover:border hover:border-blue-500">
-                  </div>
-                @endforeach
+<div>
+    <section class="container-x py-10 md:py-14">
+        <nav class="eyebrow flex flex-wrap items-center gap-2">
+            <a wire:navigate href="/" class="hover:text-ember-300">Home</a><span>/</span>
+            <a wire:navigate href="/products" class="hover:text-ember-300">Shop</a><span>/</span>
+            @if ($product->category)
+                <a wire:navigate href="/products?selected_categories[0]={{ $product->category->id }}" class="hover:text-ember-300">{{ $product->category->name }}</a><span>/</span>
+            @endif
+            <span class="text-bone">{{ $product->name }}</span>
+        </nav>
 
-
-
-              </div>
-              <div class="px-6 pb-6 mt-6 border-t border-gray-300 dark:border-gray-400 ">
-                <div class="flex flex-wrap items-center mt-6">
-                  <span class="mr-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="w-4 h-4 text-gray-700 dark:text-gray-400 bi bi-truck" viewBox="0 0 16 16">
-                      <path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z">
-                      </path>
-                    </svg>
-                  </span>
-                  <h2 class="text-lg font-bold text-gray-700 dark:text-gray-400">Free Shipping</h2>
+        <div class="mt-8 grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
+            {{-- Gallery --}}
+            <div x-data="{ mainImage: '{{ url('storage', $product->images[0]) }}' }" class="animate-rise">
+                <div class="tile aspect-square lg:aspect-[5/5]">
+                    <img x-bind:src="mainImage" alt="{{ $product->name }}" class="blend absolute inset-0 h-full w-full object-contain p-10 transition duration-500 md:p-16">
+                    <div class="absolute left-5 top-5 flex gap-2">
+                        @if ($product->on_sale) <span class="badge bg-ember text-white">Sale</span> @endif
+                        @if ($product->is_featured) <span class="badge bg-ink-950 text-bone">Featured</span> @endif
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div class="w-full px-4 md:w-1/2 ">
-            <div class="lg:pl-20">
-              <div class="mb-8 [&>ul]:list-disc [&>ul]:ml-4">
-                <h2 class="max-w-xl mb-6 text-2xl font-bold dark:text-gray-400 md:text-4xl">
-                  {{$product->name}}</h2>
-                <p class="inline-block mb-6 text-4xl font-bold text-gray-700 dark:text-gray-400 ">
-                  <span>{{Number::currency($product->price)}}</span>
-                  {{-- <span class="text-base font-normal text-gray-500 line-through dark:text-gray-400">$1800.99</span> --}}
-                </p>
-                <p class="max-w-md text-gray-700 dark:text-gray-400">
-                  {{$product->description}}
-                </p>
-              </div>
-              <div class="w-32 mb-8 ">
-                <label for="" class="w-full pb-1 text-xl font-semibold text-gray-700 border-b border-blue-300 dark:border-gray-600 dark:text-gray-400">Quantity</label>
-                <div class="relative flex flex-row w-full h-10 mt-6 bg-transparent rounded-lg">
-                  <button wire:click="decreaseQty" class="w-20 h-full text-gray-600 bg-gray-300 rounded-l outline-none cursor-pointer dark:hover:bg-gray-700 dark:text-gray-400 hover:text-gray-700 dark:bg-gray-900 hover:bg-gray-400">
-                    <span class="m-auto text-2xl font-thin">-</span>
-                  </button>
-                  <input type="number" wire:model="quantity" readonly class="flex items-center w-full font-semibold text-center text-gray-700 placeholder-gray-700 bg-gray-300 outline-none dark:text-gray-400 dark:placeholder-gray-400 dark:bg-gray-900 focus:outline-none text-md hover:text-black" placeholder="1">
-                  <button wire:click="increaseQty" class="w-20 h-full text-gray-600 bg-gray-300 rounded-r outline-none cursor-pointer dark:hover:bg-gray-700 dark:text-gray-400 dark:bg-gray-900 hover:text-gray-700 hover:bg-gray-400">
-                    <span class="m-auto text-2xl font-thin">+</span>
-                  </button>
+                <div class="mt-4 grid grid-cols-4 gap-3">
+                    @foreach ($product->images as $image)
+                        <button type="button" x-on:click="mainImage='{{ url('storage', $image) }}'"
+                                class="tile aspect-square ring-2 ring-transparent ring-offset-2 ring-offset-ink-950 transition hover:ring-ember/60"
+                                x-bind:class="mainImage === '{{ url('storage', $image) }}' && '!ring-ember'">
+                            <img src="{{ url('storage', $image) }}" alt="{{ $product->name }}" class="blend absolute inset-0 h-full w-full object-contain p-3">
+                        </button>
+                    @endforeach
                 </div>
-              </div>
-              <div class="flex flex-wrap items-center gap-4">
-                <button wire:click="addToCart({{$product->id}})" class="w-full p-4 bg-blue-500 rounded-md lg:w-2/5 dark:text-gray-200 text-gray-50 hover:bg-blue-600 dark:bg-blue-500 dark:hover:bg-blue-700">
-                  <span wire:loading.remove wire:target="addToCart({{$product->id}})">Add to Cart</span><span wire:loading wire:target="addToCart({{$product->id}})" >Adding...</span>
-                </button>
-              </div>
             </div>
-          </div>
+
+            {{-- Info --}}
+            <div class="animate-rise [animation-delay:.1s] lg:pt-6">
+                <p class="eyebrow text-ember-400">{{ $product->brand?->name }}</p>
+                <h1 class="heading-xl mt-4 text-5xl md:text-6xl">{{ $product->name }}</h1>
+
+                <div class="mt-6 flex items-center gap-4">
+                    <p class="font-display text-4xl text-bone">{{ Number::currency($product->price) }}</p>
+                    @if ($product->in_stock)
+                        <span class="badge border border-emerald-400/30 bg-emerald-400/10 text-emerald-300">In stock</span>
+                    @else
+                        <span class="badge border border-white/10 text-bone-500">Sold out</span>
+                    @endif
+                </div>
+
+                <p class="mt-8 max-w-lg text-[15px] leading-relaxed text-bone-400">{{ $product->description }}</p>
+
+                <div class="mt-10 flex flex-wrap items-center gap-4">
+                    <div class="flex items-center rounded-full border border-white/10 p-1">
+                        <button wire:click="decreaseQty" class="flex h-11 w-11 items-center justify-center rounded-full text-xl text-bone-300 transition hover:bg-white/5 hover:text-white" aria-label="Decrease">&minus;</button>
+                        <input type="number" wire:model="quantity" readonly class="w-12 border-0 bg-transparent p-0 text-center font-display text-lg text-bone focus:ring-0">
+                        <button wire:click="increaseQty" class="flex h-11 w-11 items-center justify-center rounded-full text-xl text-bone-300 transition hover:bg-white/5 hover:text-white" aria-label="Increase">+</button>
+                    </div>
+                    <button wire:click="addToCart({{ $product->id }})" @disabled(! $product->in_stock) class="btn-primary flex-1 py-4 sm:flex-none sm:px-12">
+                        <span wire:loading.remove wire:target="addToCart({{ $product->id }})">{{ $product->in_stock ? 'Add to cart' : 'Sold out' }}</span>
+                        <span wire:loading wire:target="addToCart({{ $product->id }})">Adding&hellip;</span>
+                    </button>
+                </div>
+
+                <dl class="mt-12 divide-y divide-white/[0.06] border-y border-white/[0.06] text-sm">
+                    @foreach ([
+                        ['Category', $product->category?->name ?? '—'],
+                        ['House', $product->brand?->name ?? '—'],
+                        ['Shipping', 'Free, ships within 48 hours'],
+                        ['Returns', '14 days, no questions asked'],
+                    ] as [$k, $v])
+                        <div class="flex justify-between py-4">
+                            <dt class="text-bone-500">{{ $k }}</dt>
+                            <dd class="font-medium text-bone">{{ $v }}</dd>
+                        </div>
+                    @endforeach
+                </dl>
+            </div>
         </div>
-      </div>
     </section>
-  </div>
+
+    @if ($related->isNotEmpty())
+        <section class="container-x pt-16">
+            <div class="flex items-end justify-between">
+                <div>
+                    <p class="eyebrow">Complete the look</p>
+                    <h2 class="heading-xl mt-3 text-4xl md:text-6xl">You may also like</h2>
+                </div>
+                <a wire:navigate href="/products?selected_categories[0]={{ $product->category_id }}" class="link-arrow hidden sm:inline-flex">View all <span aria-hidden="true">&rarr;</span></a>
+            </div>
+            <div class="mt-10 grid grid-cols-2 gap-x-5 gap-y-10 lg:grid-cols-4">
+                @foreach ($related as $item)
+                    <x-product-card :product="$item" :cart="false" wire:key="rel-{{ $item->id }}" />
+                @endforeach
+            </div>
+        </section>
+    @endif
+</div>
